@@ -1,0 +1,132 @@
+#!/bin/bash
+
+# == USER ==
+
+# pfile = project-file
+pfile="Non-IDE-RezaxOnes"
+# pfile_env = project-file-enviroment
+pfile_env="Non-IDE-RezaxOnes_env"
+
+# option equal setting / option = setting
+setting="$1"
+arg_1="$2"
+arg_2="$3"
+
+if [[ "$setting" == "help" ]]; then
+echo "Usage: NIRO-C / Non-IDE-Command list <path>"
+echo "Usage: NIRO-C / Non-IDE-Command edit <editor> <file>"
+echo "Usage: NIRO-C / Non-IDE-Command compiler <file> (Only for C++ / You can change it)"
+echo "Usage: NIRO-C / Non-IDE-Command run <file> (Only for C++ / You can change it)"
+echo "Usage: NIRO-C / Non-IDE-Command new <file / folder> <name>"
+echo "Usage: NIRO-C / Non-IDE-Command remove <file / folder> <file>"
+echo "Usage: NIRO-C / Non-IDE-Command safe-remove <file / folder> <file>"
+echo "Cac option cuoi cua lua chon luon co the go q / quit / exit de thoat"
+exit 0
+fi
+
+
+if [[ "$setting" == "list" ]]; then
+# arg_1 = path (not const)
+if [[ "$arg_1" == "" ]]; then
+    ls .
+else 
+ls "$arg_1"
+fi
+elif [[ "$setting" == "compiler" ]]; then
+    # Can edit it.
+    # argument 1 = <file>
+    if [[ "$arg_1" == "exit" || "$arg_1" == "q" || "$arg_1" == "quit" ]]; then 
+    echo "Exit..."
+    exit 0
+    fi
+    if [[ -z "$arg_1" ]]; then
+    echo "Error: File Chi Dinh Bien Dich Bi Trong!"
+    exit 1
+    fi
+    if [[ ! -f "$arg_1" ]]; then
+    echo "Error: File '$arg_1' Khong Ton Tai."
+    exit 1
+    fi
+    
+    g++ "$arg_1" -o "${arg_1%.*}"
+elif [[ "$setting" == "run" ]]; then
+    # Can edit it.
+    # argument 1 = <file>
+    if [[ ! -e "./${arg_1%.*}" ]]; then
+    echo "Error: file $arg_1 Khong Ton Tai."
+    exit 1
+    fi
+    if [[ ! -x "./${arg_1%.*}" ]]; then
+    echo "Error: $arg_1 Chua The Chay Do Loi (File $arg_1 Chua Co Quyen Thuc Thi \"+x\" hoac ...)"
+    exit 1
+    fi
+    ./"${arg_1%.*}"
+elif [[ "$setting" == "edit" ]]; then
+    # argument 1 = <editor>
+    # argument 2 = <file>
+    if [[ "$arg_2" == "exit" || "$arg_2" == "q" || "$arg_2" == "quit" || "$arg_1" == "exit" || "$arg_1" == "q" || "$arg_1" == "quit" ]]; then 
+    echo "Exit..."
+    exit 0
+    fi
+    if [[ -z "$arg_1" ]]; then
+    echo "Error: Editor khong duoc rong."
+    exit 1
+    fi
+    if [[ ! -f "$arg_2" ]]; then
+    echo "Error: File '$arg_2' Khong Ton Tai."
+    exit 1
+    fi
+    
+    "$arg_1" "$arg_2"
+elif [[ "$setting" == "new" ]]; then
+    # argument 1 = <file / folder>
+    # argument 2 = <name>
+    if [[ "$arg_2" == "exit" || "$arg_2" == "q" || "$arg_2" == "quit" ]]; then 
+    echo "Exit..."
+    exit 0
+    fi
+    if [[ "$arg_1" == "folder" ]]; then
+    mkdir "$arg_2"
+    elif [[ "$arg_1" == "file" ]]; then
+    touch "$arg_2"
+    else
+    echo "Chi co the la file hoac folder."
+    exit 1
+    fi
+elif [[ "$setting" == "safe-remove" ]]; then
+    # argument 1 = <file / folder>
+    # argument 2 = <file>
+    if [[ "$arg_2" == "exit" || "$arg_2" == "q" || "$arg_2" == "quit" ]]; then 
+    echo "Exit..."
+    exit 0
+    fi
+    if [[ "$arg_1" == "folder" ]]; then
+    if ! rmdir "$arg_2"; then
+    echo "safe-remove that bai: thu muc khong he rong."
+    exit 1
+    fi
+    elif [[ "$arg_1" == "file" ]]; then
+    rm -i "$arg_2"
+    else
+    echo "Chi co the la file hoac folder."
+    exit 1
+    fi
+    elif [[ "$setting" == "remove" ]]; then
+    # argument 1 = <file / folder>
+    # argument 2 = <file>
+    if [[ "$arg_2" == "exit" || "$arg_2" == "q" || "$arg_2" == "quit" ]]; then 
+    echo "Exit..."
+    exit 0
+    fi
+    if [[ "$arg_1" == "folder" ]]; then
+    rm -rf "$arg_2"
+    elif [[ "$arg_1" == "file" ]]; then
+    rm -f "$arg_2"
+     else
+    echo "Chi co the la file hoac folder."
+    exit 1
+    fi
+else
+  echo "Option khong hop le, hay dung \"help\" de xem goi y cach dung lenh."
+  exit 1
+ fi

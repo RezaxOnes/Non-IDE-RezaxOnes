@@ -1,0 +1,45 @@
+#!/bin/bash
+
+
+# pfile = project-file
+pfile="Non-IDE-RezaxOnes"
+# pfile_env = project-file-enviroment
+pfile_env="Non-IDE-RezaxOnes_env"
+
+# == USER ==
+
+
+echo "Non-IDE By RezaxOnes - Version 2.0.0"
+echo "LICENSE - MIT"
+echo "Ban can giup gi?"
+echo "Lua chon: "
+echo "1. Help / Can Huong Dan Cach Su Dung"
+echo "2. Run command Non-IDE-Settings"
+echo "3. Run command Non-IDE-Command"
+echo "4. Go cai dat NIRO =((("
+echo "5. Thoat NIRO"
+echo "Vui long nhap lua chon! (Chi nhap so khong nhap gi them)."
+read -p ">> " query
+
+if [[ "$query" == "1" ]]; then
+   less "/home/$user_m/$pfile_env/docs/help.txt"
+elif [[ "$query" == "2" ]]; then
+   echo "Se chuyen tiep lenh sau dau \">> \" sang Non-IDE-Settings"
+   echo "Vui long nhap: "
+   read -p "NIRO-S>> " -a args1
+   exec "/home/$user_m/$pfile_env/Non-IDE-Settings" "${args1[@]}"
+elif [[ "$query" == "3" ]]; then
+   echo "Se chuyen tiep lenh sau dau \">> \" sang Non-IDE-Command"
+   echo "Vui long nhap: "
+   read -p "NIRO-C>> " -a args2
+   exec "/home/$user_m/$pfile_env/Non-IDE-Command" "${args2[@]}"
+elif [[ "$query" == "4" ]]; then
+   echo "Lenh nay can quyen sudo!"
+   sudo "/home/$user_m/$pfile/uninstall.sh"
+elif [[ "$query" == "5" ]]; then
+echo "Good Bye!"
+exit 0 
+else 
+echo "Lua chon khong hop le, nhung khong sao vi no tuong duong voi \"5. Thoat NIRO!\""
+exit 0
+fi

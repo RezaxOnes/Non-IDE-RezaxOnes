@@ -2,7 +2,7 @@
 echo "C++ Compiler - Manual" 
 echo "Vui Long Nhap File Can Bien Dich (Duong dan hoac ./file.cpp)"
 read -p ">> " file
-if [[ "$file" == "exit" || "$file" == "q" || "$file" == "exit m-run" ]]; then 
+if [[ "$file" == "exit" || "$file" == "q" || "$file" == "quit" ]]; then 
 echo "Exit..."
 exit 0
 fi

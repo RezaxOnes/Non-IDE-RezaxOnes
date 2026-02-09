@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# == USER ==
+
+# pfile = project-file
+pfile="Non-IDE-RezaxOnes"
+# pfile_env = project-file-enviroment
+pfile_env="Non-IDE-RezaxOnes_env"
+
+setting="$1"
+editor="$2"
+file="$3"
+
+if [[ "$setting" == "help" ]]; then
+echo "Usage: NIRO-S / Non-IDE-Settings edit <editor> <file if you need to change / edit file contained in $pfile_env>"
+echo "Usage: NIRO-S / Non-IDE-Settings list"
+exit 0
+fi
+
+if [[ "$setting" == "list" ]]; then
+  ls "/home/$user_m/$pfile_env"
+elif [[ "$setting" == "edit" ]]; then
+    if [[ ! -f "/home/$user_m/$pfile_env/$file" ]]; then
+    echo "Error: File '$file' Khong Ton Tai."
+    exit 1
+    fi
+    if [[ -z "$editor" ]]; then
+    echo "Error: Editor khong duoc rong."
+    exit 1
+    fi
+    "$editor" "/home/$user_m/$pfile_env/$file"
+else
+  echo "Option khong hop le, hay dung \"help\" de xem goi y cach dung lenh."
+  exit 1
+ fi
