@@ -6,8 +6,8 @@ Ví dụ: Non-IDE-Command list => ls (wrapper list thành ls của bash)
 - Ưu điểm: Chỉ cần gõ r hoặc run là hệ thống tự compile và chạy file mặc định, giúp tiết kiệm thao tác và không cần sử dụng IDE.
 - Non-IDE-RezaxOnes có settings cho phép sửa trực tiếp các file alias(bí danh) và định nghĩa cách nó hoạt động lại.
 - Một số lệnh được chuẩn hoá sao cho từ ngữ dễ hiểu nhất dành cho con người hoặc gần giống windows.
-- Nhược điểm: Không có editor riêng và quá đơn giản.
-**2. Một số lệnh linux cơ bản**
+- Nhược điểm: Không có editor riêng và quá đơn giản.<br>
+**2. Một số lệnh linux cơ bản**<br>
 # 2.1 rm -r 
 - Xoá folder một cách đệ quy, rất nguy hiểm nếu xoá nhầm
 - Ví dụ: rm -r \<files or path>
@@ -17,8 +17,8 @@ Ví dụ: Non-IDE-Command list => ls (wrapper list thành ls của bash)
 - Quay lại cấp thư mục đang đứng lần cuối cùng, chỉ quay lại nếu vô tình thực hiện cd sau 1 bước có thể quay lại trước 1 bước
 # 2.4 cd .. và cd ../..
 - Quay lại 1 - 2 cấp thư mục đang đứng, ví dụ cd .. sẽ lùi 1 thư mục
-- Ví dụ: /home/user dùng "cd .." => /home
-**3. Lệnh của Non-IDE-RezaxOnes-Command**<br>>
+- Ví dụ: /home/user dùng "cd .." => /home<br>
+**3. Lệnh của Non-IDE-RezaxOnes-Command**<br>
 # 3.1 edit tương đương với Non-IDE-Command edit
 Ví dụ: edit \<Name IDE or Editor> \<files or path>
  - vm = vim
@@ -51,8 +51,8 @@ Ví dụ: edit \<Name IDE or Editor> \<files or path>
 - NIRO-C / Non-IDE-Command remove \<file / folder> \<file>
 # 3.9 safe-remove
 - Xoá như remove nhưng sẽ hỏi lại trước khi xoá
-- NIRO-C / Non-IDE-Command safe-remove \<file / folder> \<file>
-**4. Lệnh của Non-IDE-RezaxOnes-Settings**
+- NIRO-C / Non-IDE-Command safe-remove \<file / folder> \<file> <br>
+**4. Lệnh của Non-IDE-RezaxOnes-Settings**<br>
 # 4.1 edit
 - Chỉnh sửa các file lệnh hay chỉnh sửa cách nó hoạt động, ta có thể chỉnh sửa run chạy như C++ thành chạy như python
 - NIRO-S / Non-IDE-Settings edit \<editor> \<file if you need to change / edit file contained in $pfile_env>
