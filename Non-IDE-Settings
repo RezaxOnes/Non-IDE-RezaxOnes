@@ -7,29 +7,83 @@ pfile="Non-IDE-RezaxOnes"
 # pfile_env = project-file-enviroment
 pfile_env="Non-IDE-RezaxOnes_env"
 
-setting="$1"
-editor="$2"
-file="$3"
+arg_1="$1"
+arg_2="$2"
+arg_3="$3"
 
-if [[ "$setting" == "help" ]]; then
+
+if [[ "$arg_1" == "help" ]]; then
+echo "Usage: NIRO-S / Non-IDE-Settings new command <name command you need to add in $pfile_env>"
+echo "Usage: NIRO-S / Non-IDE-Settings remove command <name command you need to remove in $pfile_env>"
 echo "Usage: NIRO-S / Non-IDE-Settings edit <editor> <file if you need to change / edit file contained in $pfile_env>"
 echo "Usage: NIRO-S / Non-IDE-Settings list"
+echo "Cac argument cua lua chon luon co the go q / quit / exit de thoat (Tru argument 1)"
 exit 0
 fi
 
-if [[ "$setting" == "list" ]]; then
+if [[ "$arg_1" == "list" ]]; then
+# CONST, argument 1 = list
   ls "/home/$user_m/$pfile_env"
-elif [[ "$setting" == "edit" ]]; then
-    if [[ ! -f "/home/$user_m/$pfile_env/$file" ]]; then
-    echo "Error: File '$file' Khong Ton Tai."
+elif [[ "$arg_1" == "edit" ]]; then
+# argument 1 = edit, argument 2 = editor, argument 3 = file need to change
+    if [[ "$arg_2" == "exit" || "$arg_2" == "q" || "$arg_2" == "quit" || "$arg_3" == "exit" || "$arg_3" == "q" || "$arg_3" == "quit" ]]; then 
+    echo "Exit..."
+    exit 0
+    fi
+    if [[ ! -f "/home/$user_m/$pfile_env/$arg_3" ]]; then
+    echo "Error: File '$arg_3' Khong Ton Tai."
     exit 1
     fi
-    if [[ -z "$editor" ]]; then
+    if [[ -z "$arg_2" ]]; then
     echo "Error: Editor khong duoc rong."
     exit 1
     fi
-    "$editor" "/home/$user_m/$pfile_env/$file"
+    "$arg_2" "/home/$user_m/$pfile_env/$arg_3"
+elif [[ "$arg_1" == "new" ]]; then
+# argument 1 = new, argument 2 = "command" (const), argument 3 = file name
+    if [[ "$arg_2" == "exit" || "$arg_2" == "q" || "$arg_2" == "quit" || "$arg_3" == "exit" || "$arg_3" == "q" || "$arg_3" == "quit" ]]; then 
+    echo "Exit..."
+    exit 0
+    fi
+   if [[ "$arg_2" != "command" ]]; then
+   echo "Error: Phai la tu command."
+   exit 1
+   fi
+    if [[ -z "$arg_3" ]]; then
+    echo "Error: Ten khong duoc de trong."
+    exit 1
+    fi
+     if [[ -f "/home/$user_m/$pfile_env/$arg_3" ]]; then
+    echo "Error: File command '$arg_3' Da Ton Tai."
+    exit 1
+    fi
+    touch "/home/$user_m/$pfile_env/$arg_3"
+    printf '#!/bin/bash\n' | tee -a "/home/$user_m/$pfile_env/$arg_3"
+    printf '# Fill command in \" \"\n' | tee -a "/home/$user_m/$pfile_env/$arg_3"
+    printf 'bash -c " "\n' | tee -a "/home/$user_m/$pfile_env/$arg_3"
+    echo "Dang cap quyen nen can dung sudo..."
+    sudo chmod +x "/home/$user_m/$pfile_env/$arg_3"
+ elif [[ "$arg_1" == "remove" ]]; then
+ # argument 1 = remove,  argument 2 = "command", argument 3 = file name
+  if [[ "$arg_2" == "exit" || "$arg_2" == "q" || "$arg_2" == "quit" || "$arg_3" == "exit" || "$arg_3" == "q" || "$arg_3" == "quit" ]]; then 
+    echo "Exit..."
+    exit 0
+    fi
+  if [[ "$arg_2" != "command" ]]; then
+   echo "Error: Phai la tu command."
+   exit 1
+   fi
+    if [[ -z "$arg_3" ]]; then
+    echo "Error: Ten khong duoc de trong."
+    exit 1
+    fi
+     if [[ ! -f "/home/$user_m/$pfile_env/$arg_3" ]]; then
+    echo "Error: File command '$arg_3' Khong Ton Tai."
+    exit 1
+    fi
+    echo "Mac dinh cua lenh remove nay la rm -i"
+    rm -i "/home/$user_m/$pfile_env/$arg_3"
 else
   echo "Option khong hop le, hay dung \"help\" de xem goi y cach dung lenh."
   exit 1
- fi
+fi

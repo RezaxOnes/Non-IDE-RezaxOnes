@@ -7,6 +7,8 @@ RESET="\033[0m"
 pfile="Non-IDE-RezaxOnes"
 # pfile_env = project-file-enviroment
 pfile_env="Non-IDE-RezaxOnes_env"
+# pfile_env_flag = project-file-enviroment-flag (to check exist)
+pfile_env_flag="Non-IDE-RezaxOnes_Flag"
 
 set -Eeuo pipefail
 trap 'echo -e "${Red} Khong the thuc hien thao tac do loi khong xac dinh, huy thuc thi script.${RESET}" ' ERR
@@ -38,6 +40,8 @@ echo -e "${Green}[-] Dang go cai dat${RESET}"
 echo -e "${Green}[-] Dang bat dau xoa de quy thu muc${RESET}"
 echo -e "${Green}[-] Bat dau xoa thu muc $pfile_env ${RESET}"
 sudo rm -rf "/home/$user_m/$pfile_env"
+echo -e "${Green}[-] Bat dau xoa thu muc flag $pfile_env_flag ${RESET}"
+sudo rm -rf "/home/$user_m/$pfile_env_flag"
 echo -e "${Green}[-] Dang xoa moi truong${RESET}"
 sed -i "\|^[[:space:]]*export PATH=/home/$user_m/$pfile_env:\$PATH|d" "/home/$user_m/.bashrc"
 sed -i '/^# Please read — this is custom. Do not touch any code above./d' "/home/$user_m/.bashrc"
