@@ -12,7 +12,9 @@ pfile_env_flag="Non-IDE-RezaxOnes_Flag"
 
 set -Eeuo pipefail
 trap 'echo -e "${Red} Khong the thuc hien thao tac do loi khong xac dinh, huy thuc thi script.${RESET}" ' ERR
-echo "Script nay RAT NGUY HIEM neu chay duoi dang sudo, vui long CHI nhap dung ten nhung user hop le duoi day (Khong duoc chon root)"
+
+echo "Hay Chac Chan Rang Ban Dang Chay Lenh Nay Bang \"sudo\""
+echo "Script nay RAT NGUY HIEM vi chay bang sudo, vui long CHI nhap dung ten nhung user hop le duoi day (Khong duoc chon root)"
 echo "  |"
 echo "  V"
 ls "/home"
@@ -51,6 +53,7 @@ echo "exec /home/$user_m/$pfile_env/Non-IDE-Settings \"\$@\"" >> "/home/$user_m/
 echo -e "${Green}[-] Them lenh viet tat (co the goi la invoke hoac alias) cho $pfile Command${RESET}"
 printf "\n" | sudo tee -a "/home/$user_m/$pfile_env/NIRO-C"
 echo "exec /home/$user_m/$pfile_env/Non-IDE-Command \"\$@\"" >> "/home/$user_m/$pfile_env/NIRO-C"
+echo -e "${Green}[-] Them map file cho $pfile ${RESET}"
 
 echo -e "${Green}[-] Them bien user tuyet doi => Non-IDE-Settings${RESET}"
 # == USER ==

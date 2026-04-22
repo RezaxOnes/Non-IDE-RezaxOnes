@@ -12,7 +12,8 @@ pfile_env_flag="Non-IDE-RezaxOnes_Flag"
 
 set -Eeuo pipefail
 trap 'echo -e "${Red} Khong the thuc hien thao tac do loi khong xac dinh, huy thuc thi script.${RESET}" ' ERR
-echo "Script nay RAT NGUY HIEM khi chay duoi dang sudo, vui long PHAI nhap dung ten mot trong nhung user hop le duoi day (Khong duoc chon root va user do phai la nguoi cai $pfile)"
+echo "Hay Chac Chan Rang Ban Dang Chay Lenh Nay Bang \"sudo\""
+echo "Script nay RAT NGUY HIEM vi chay bang sudo, vui long CHI nhap dung ten nhung user hop le duoi day (Khong duoc chon root)"
 echo "  |"
 echo "  V"
 ls "/home"

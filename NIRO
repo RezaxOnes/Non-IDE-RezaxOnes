@@ -9,7 +9,9 @@ pfile_env="Non-IDE-RezaxOnes_env"
 # == USER ==
 
 
-echo "Non-IDE By RezaxOnes - Version 2.0.0"
+
+
+echo "Non-IDE By RezaxOnes - Version 2.1.0 - Optimized Ultra NIRO 1"
 echo "LICENSE - MIT"
 echo "Ban can giup gi?"
 echo "Lua chon: "
@@ -17,7 +19,10 @@ echo "1. Help / Can Huong Dan Cach Su Dung"
 echo "2. Run command Non-IDE-Settings"
 echo "3. Run command Non-IDE-Command"
 echo "4. Go cai dat NIRO =((("
-echo "5. Thoat NIRO"
+echo "5. UIT (Update In Time - Update NIRO Ma Khong Lam Mat Script Ban Da Cau Hinh)"
+echo "6. Reinstall (Cai dat lai)"
+echo "7. Mot so van de co the nay sinh loi (dev monitor)"
+echo "8. Thoat NIRO"
 echo "Vui long nhap lua chon! (Chi nhap so khong nhap gi them)."
 read -p ">> " query
 
@@ -37,6 +42,48 @@ elif [[ "$query" == "4" ]]; then
    echo "Lenh nay can quyen sudo!"
    sudo "/home/$user_m/$pfile/uninstall.sh"
 elif [[ "$query" == "5" ]]; then
+   echo "Vui long chac chan rang ban da tai git neu da tai roi thi go \"co\" neu khong thi go \"khong\""
+   echo "Vui long nhap \"co\" hoac \"khong\": "
+   read -p ">> " query2
+   # === Read Map ===
+   # === Query ===
+   if [[ "$query2" == "co" ]]; then
+   # === check version ===
+   git -C "/home/$user_m/$pfile" pull
+   if cmp -s "/home/$user_m/$pfile/version_source.txt" "/home/$user_m/$pfile_env/version_source.txt"; then
+      echo "Day da la phien ban moi nhat, khong can cap nhat gi them!"
+      exit 0
+   else
+    git -C "/home/$user_m/$pfile" pull
+    sed -i "/^# == USER ==/{a\
+    user_m=\"$user_m\"
+    }" "/home/$user_m/$pfile/update-in-time.sh"
+    exec "/home/$user_m/$pfile/update-in-time.sh"
+    exit 0
+   fi
+   elif [[ "$query2" == "khong" ]]; then
+   echo "Nho tai git nhe!"
+   exit 0
+   else 
+   echo "Lua chon khong hop le nhung van tuong duong exit 0"
+   echo "Nho tai git nhe!"
+   exit 0
+   fi
+elif [[ "$query" == "6" ]]; then
+sed -i "/^# == USER ==/{a\
+ user_m=\"$user_m\"
+}" "/home/$user_m/$pfile/reinstall.sh"
+  echo "Lenh nay can sudo!"
+  exec "/home/$user_m/$pfile/reinstall.sh"
+  exit 0
+elif [[ "$query" == "7" ]]; then
+   echo "1. Luon cap nhap file NIRO_map_file neu co them script moi, neu ban la user hay kiem tra NIRO_map_file co loi khong, neu co thi nen xoa roi git pull"
+   printf "\n"
+   echo "2. Khi cap nhap source luon luon sua version_source"
+   printf "\n"
+   echo "3. Neu script loi do flag, hay xoa Non-IDE-RezaxOnes_Flag"
+   exit 0
+elif [[ "$query" == "8" ]]; then
 echo "Good Bye!"
 exit 0 
 else 

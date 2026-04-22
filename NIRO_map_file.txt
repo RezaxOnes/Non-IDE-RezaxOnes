@@ -1,0 +1,23 @@
+# === Map File ===
+#
+docs
+debug
+e
+edit
+LICENSE
+m-debug
+m-run
+mr
+NIRO
+NIRO-C
+NIRO-S
+Non-IDE-Command
+Non-IDE-Settings
+r
+README.md
+reinstall.sh
+run
+script-setup.sh
+uninstall.sh
+update-in-time.sh
+version_source.txt

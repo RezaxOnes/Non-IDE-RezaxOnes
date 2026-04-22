@@ -18,6 +18,7 @@ echo "Usage: NIRO-C / Non-IDE-Command edit <editor> <file>"
 echo "Usage: NIRO-C / Non-IDE-Command compiler <file> (Only for C++ / You can change it)"
 echo "Usage: NIRO-C / Non-IDE-Command run <file> (Only for C++ / You can change it)"
 echo "Usage: NIRO-C / Non-IDE-Command new <file / folder> <name>"
+echo "Usage: NIRO-C / Non-IDE-Command rename <old file / folder name> <new file / folder name>"
 echo "Usage: NIRO-C / Non-IDE-Command remove <file / folder> <file>"
 echo "Usage: NIRO-C / Non-IDE-Command safe-remove <file / folder> <file>"
 echo "Cac agrument cua lua chon luon co the go q / quit / exit de thoat (Tru argument 1)"
@@ -126,10 +127,26 @@ elif [[ "$setting" == "safe-remove" ]]; then
     rm -rf "$arg_2"
     elif [[ "$arg_1" == "file" ]]; then
     rm -f "$arg_2"
-     else
+    else
     echo "Chi co the la file hoac folder."
     exit 1
     fi
+ elif [[ "$setting" == "rename" ]]; then
+    # argument 1 = <old file / folder name>
+    # argument 2 = <new file / folder name>
+    if [[ "$arg_2" == "exit" || "$arg_2" == "q" || "$arg_2" == "quit" || "$arg_1" == "exit" || "$arg_1" == "q" || "$arg_1" == "quit" ]]; then 
+    echo "Exit..."
+    exit 0
+    fi
+    if [[ ! -f "$arg_1" && ! -d "$arg_2" ]]; then
+    echo "Error: File / Folder doi ten khong ton tai!"
+    exit 1
+    fi
+    if [[ -z "$arg_1" ]]; then
+    echo "Error: File / Folder chi dinh khong duoc de trong!"
+    exit 1
+    fi
+    mv "$arg_1" "$arg_2"
 else
   echo "Option khong hop le, hay dung \"help\" de xem goi y cach dung lenh."
   exit 1
