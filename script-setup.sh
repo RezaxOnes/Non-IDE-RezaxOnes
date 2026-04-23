@@ -19,6 +19,7 @@ echo "  |"
 echo "  V"
 ls "/home"
 echo "Vui Long Nhap Ten User (Kiem tra o \"ls /home\")"
+echo "Ban co the go \"q\", \"quit\", \"exit\" de co the thoat script!"
 read -p ">> " user_m
 
 if [[ "$user_m" == "q" || "$user_m" == "quit" || "$user_m" == "exit" ]]; then
