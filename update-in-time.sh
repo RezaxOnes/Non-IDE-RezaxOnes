@@ -72,6 +72,7 @@ UIT_yes
 UIT_setup
 
 # am i done now???
+mkdir -p "/home/$user_m/$pfile/temp"
 touch "/home/$user_m/$pfile/temp/remove-user-UIT.sh"
 printf "" | tee "/home/$user_m/$pfile/temp/remove-user-UIT.sh"
 
