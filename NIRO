@@ -11,7 +11,7 @@ pfile_env="Non-IDE-RezaxOnes_env"
 
 
 
-echo "Non-IDE By RezaxOnes - Version 2.2.4 - Optimized Ultra NIRO 1"
+echo "Non-IDE By RezaxOnes - Version 2.2.5 - Optimized Ultra NIRO 2"
 echo "LICENSE - MIT"
 echo "Ban can giup gi?"
 echo "Lua chon: "
@@ -22,7 +22,8 @@ echo "4. Go cai dat NIRO =((("
 echo "5. UIT (Update In Time - Update NIRO Ma Khong Lam Mat Script Ban Da Cau Hinh)"
 echo "6. Reinstall (Cai dat lai)"
 echo "7. Mot so van de co the nay sinh loi (dev monitor)"
-echo "8. Thoat NIRO"
+echo "8. Cai dat cac package dac biet"
+echo "9. Thoat NIRO"
 echo "Vui long nhap lua chon! (Chi nhap so khong nhap gi them)."
 read -p ">> " query
 
@@ -62,10 +63,37 @@ elif [[ "$query" == "5" ]]; then
     exit 0
    fi
    elif [[ "$query2" == "khong" ]]; then
+   echo "Ban co the tai ngay luc nay mot cach tu dong!"
+   echo "Ban vui long go \"co\" thi script se tu dong tai git ve! (chi kha dung voi Ubuntu)"
+   echo "Neu ban van muon cai thu cong thi hay go \"khong\""
+   echo "Luu y: Chi ho tro huong dan cai dat cho ubuntu, neu dung OS khac ban nen go \"khong\" roi cai dat mot cach thu cong git"
+   read -p ">> " query22
+   if [[ "$query22" == "co" ]]; then
+      echo "Dang tai git!"
+      sudo add-apt-repository ppa:git-core/ppa
+      sudo apt update && sudo apt install git
+      echo "Da tai git thanh cong! Hay chay lai UIT va nhan co cho lenh UIT!"
+      exit 0
+   elif [[ "$query22" == "khong" ]]; then
+      echo "Day la lenh de xuat neu ban muon tai git (ubuntu)"
+      echo "sudo add-apt-repository ppa:git-core/ppa"
+      echo "sudo apt update && sudo apt install git"
+      echo "Nho tai git nhe!"
+      exit 0
+   else 
+   echo "Lua chon khong hop le nhung van tuong duong exit 0"
+   echo "Day la lenh de xuat neu ban muon tai git (ubuntu)"
+   echo "sudo add-apt-repository ppa:git-core/ppa"
+   echo "sudo apt update && sudo apt install git"
    echo "Nho tai git nhe!"
+   exit 0
+   fi
    exit 0
    else 
    echo "Lua chon khong hop le nhung van tuong duong exit 0"
+   echo "Day la lenh de xuat neu ban muon tai git (ubuntu)"
+   echo "sudo add-apt-repository ppa:git-core/ppa"
+   echo "sudo apt update && sudo apt install git"
    echo "Nho tai git nhe!"
    exit 0
    fi
@@ -77,16 +105,99 @@ sed -i "/^# == USER ==/{a\
   exec "/home/$user_m/$pfile/reinstall.sh"
   exit 0
 elif [[ "$query" == "7" ]]; then
-   echo "1. Luon cap nhap file NIRO_map_file neu co them script moi, neu ban la user hay kiem tra NIRO_map_file co loi khong, neu co thi nen xoa roi git pull"
+   echo "1. Luon cap nhat file NIRO_map_file neu co them script moi, neu ban la user hay kiem tra NIRO_map_file co loi khong, neu co thi nen xoa roi git pull"
    printf "\n"
-   echo "2. Khi cap nhap source luon luon sua version_source"
+   echo "2. Khi cap nhat source luon luon sua version_source"
    printf "\n"
    echo "3. Neu script loi do flag, hay xoa Non-IDE-RezaxOnes_Flag"
    exit 0
 elif [[ "$query" == "8" ]]; then
+   echo "V Truoc khi dung ban can luu y phai tai cac goi o duoi V"
+   echo "Chu y: Do cac trinh quan ly goi o Distro la khac nhau nen khong co che do cai tu dong!"
+   echo "De dung duoc script nay ban can tai cac goi nay (tuy Distro thuong la: apt, zypper, dnf, pacman,...):"
+   echo "Ban can tai: (unzip, curl, wget)"
+   echo "Tuy chon: (coreutils) (neu distro cua ban khong phai minimal thuong khong can tai)"
+   echo "---------------------------------------------------------------------------------------"
+   echo "Tu phien ban version 2.2.5 - Optimized Ultra NIRO 2, Non-IDE-RezaxOnes tich hop ca tools server vao package"
+   echo "Non-IDE By RezaxOnes Downloads Package Center - Version 2.2.5 - Optimized Ultra NIRO 2"
+   echo "LICENSE - MIT"
+   echo "Ban can tai gi?"
+   echo "1. Cac lenh cua tool server (tool server by RezaxOnes Studios)"
+   echo "Vui long nhap lua chon! (Chi nhap so khong nhap gi them)."
+   echo "---------------------------------------------------------------------------------------"
+   read -p ">> " query_download
+   if [[ "$query_download" == "1" ]]; then
+   echo "ban co chac chan muon tai package nay khong?"
+   echo "1. co"
+   echo "2. khong"
+   echo "Vui long nhap lua chon! (Chi nhap so khong nhap gi them)."
+   read -p ">> " query_package_1_0
+   if [[ "$query_package_1_0" == "1" ]]; then
+   echo "ban muon tai package nay tu nguon mirror nao?"
+   echo "1. rscdn.rezaxones.com"
+   echo "2. github.com"
+   echo "Vui long nhap lua chon! (Chi nhap so khong nhap gi them)."
+   read -p ">> " query_package_1_1
+   if [[ "$query_package_1_1" == "1" ]]; then
+   echo "Ban dang tai tu nguon rscdn.rezaxones.com"
+   wget -P  "/home/$user_m/$pfile/package/Tool-Server" "https://rscdn.rezaxones.com/list/github_archive/tool-server/command_package.zip"
+   wget -P  "/home/$user_m/$pfile/package/Tool-Server" "https://rscdn.rezaxones.com/list/github_archive/tool-server/SHA256SUM-command_package.txt"
+   echo "Dang checksum package"
+   touch "/home/$user_m/$pfile/package/Tool-Server/temp_SHA256SUM-command_package.txt"
+   sha256sum "/home/$user_m/$pfile/package/Tool-Server/command_package.zip" | awk '{print $1}' | tee "/home/$user_m/$pfile/package/Tool-Server/temp_SHA256SUM-command_package.txt"
+   if cmp -s "/home/$user_m/$pfile/package/Tool-Server/SHA256SUM-command_package.txt" "/home/$user_m/$pfile/package/Tool-Server/temp_SHA256SUM-command_package.txt"; then
+   echo "Checksum da khop!"
+   echo "Dang unzip package /home/$user_m/$pfile/package/Tool-Server/command_package.zip"
+   unzip  "/home/$user_m/$pfile/package/Tool-Server/command_package.zip" -d "/home/$user_m/$pfile_env/"
+   echo "Dang cap mot so quyen can thiet cho package"
+   sudo chmod +x /home/$user_m/$pfile_env/*
+   echo "Luu y: Cac package da tai ve khong duoc xoa tu dong va duoc luu tru o thu muc /home/$user_m/$pfile/package !"
+   echo "Da cai dat thanh cong!"
+   exit 0
+   else 
+   echo "Checksum khong khop"
+   echo "Cai dat that bai!"
+   echo "Vui long kiem tra lai Non-IDE-RezaxOnes!"
+   exit 1
+   fi
+   elif [[ "$query_package_1_1" == "2" ]]; then
+   echo "Ban dang tai tu nguon github.com"
+   wget -P  "/home/$user_m/$pfile/package/Tool-Server" "https://github.com/RezaxOnes/tool-server/raw/refs/heads/main/command_package.zip"
+   wget -P  "/home/$user_m/$pfile/package/Tool-Server" "https://github.com/RezaxOnes/tool-server/raw/refs/heads/main/SHA256SUM-command_package.txt"
+   echo "Dang checksum package"
+   touch "/home/$user_m/$pfile/package/Tool-Server/temp_SHA256SUM-command_package.txt"
+   sha256sum "/home/$user_m/$pfile/package/Tool-Server/command_package.zip" | awk '{print $1}' | tee "/home/$user_m/$pfile/package/Tool-Server/temp_SHA256SUM-command_package.txt"
+   if cmp -s "/home/$user_m/$pfile/package/Tool-Server/SHA256SUM-command_package.txt" "/home/$user_m/$pfile/package/Tool-Server/temp_SHA256SUM-command_package.txt"; then
+   echo "Checksum da khop!"
+   echo "Dang unzip package /home/$user_m/$pfile/package/Tool-Server/command_package.zip"
+   unzip  "/home/$user_m/$pfile/package/Tool-Server/command_package.zip" -d "/home/$user_m/$pfile_env/"
+   echo "Dang cap mot so quyen can thiet cho package"
+   sudo chmod +x /home/$user_m/$pfile_env/*
+   echo "Luu y: Cac package da tai ve khong duoc xoa tu dong va duoc luu tru o thu muc /home/$user_m/$pfile/package !"
+   echo "Da cai dat thanh cong!"
+   exit 0
+   else 
+   echo "Checksum khong khop"
+   echo "Cai dat that bai!"
+   echo "Vui long kiem tra lai Non-IDE-RezaxOnes!"
+   exit 1
+   fi
+   else 
+   echo "Lua chon khong hop le tuy nhien van tuong duong voi exit 0"
+   exit 0
+   fi
+   elif [[ "$query_package_1_0" == "2" ]]; then
+   echo "Ban da huy thao tac thanh cong!"
+   exit 0
+   else 
+   echo "Lua chon khong hop le tuy nhien van tuong duong voi exit 0"
+   exit 0
+   fi
+   fi
+elif [[ "$query" == "9" ]]; then
 echo "Good Bye!"
 exit 0 
 else 
-echo "Lua chon khong hop le, nhung khong sao vi no tuong duong voi \"5. Thoat NIRO!\""
+echo "Lua chon khong hop le, nhung khong sao vi no tuong duong voi \"9. Thoat NIRO!\""
 exit 0
 fi

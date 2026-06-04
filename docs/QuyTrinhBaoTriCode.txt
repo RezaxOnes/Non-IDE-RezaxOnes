@@ -1,0 +1,4 @@
+1. Luôn cập nhật file NIRO_map_file nếu có thêm script mới
+2. Khi cập nhật source luôn luôn sửa version_source và phiên bản trong script NIRO (Sẽ được đánh dấu sau)
+3. Nếu script lỗi do flag, hãy xóa Non-IDE-RezaxOnes_Flag
+4. Luôn xóa các file/thư mục trong test và package khi đã test xong!

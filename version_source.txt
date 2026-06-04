@@ -1,2 +1,2 @@
-Version 2.2.4
-Optimized Ultra NIRO 1
+Version 2.2.5
+Optimized Ultra NIRO 2

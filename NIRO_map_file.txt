@@ -20,4 +20,6 @@ run
 script-setup.sh
 uninstall.sh
 update-in-time.sh
+package-install.sh
+package
 version_source.txt
