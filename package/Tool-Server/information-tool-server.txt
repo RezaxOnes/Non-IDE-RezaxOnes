@@ -1,0 +1,9 @@
+Author: RezaxOnes
+Github: https://github.com/RezaxOnes/tool-server
+Vui lòng xóa các file zip, txt,... ngay tại thư mục Tool-Server này nếu bạn cần 
+reinstall (cài đặt lại) tránh việc bị lỗi
+Please Donate! =(
+Vui Lòng Ủng Hộ! =(
+
+
+    ĐỪNG XÓA FILE NÀY =(
