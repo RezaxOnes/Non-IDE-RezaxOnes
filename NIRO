@@ -152,7 +152,8 @@ elif [[ "$query" == "8" ]]; then
    unzip  "/home/$user_m/$pfile/package/Tool-Server/command_package.zip" -d "/home/$user_m/$pfile_env/"
    echo "Dang cap mot so quyen can thiet cho package"
    sudo chmod +x /home/$user_m/$pfile_env/*
-   echo "Luu y: Cac package da tai ve khong duoc xoa tu dong va duoc luu tru o thu muc /home/$user_m/$pfile/package !"
+   echo "Luu y: Cac package da tai ve khong duoc xoa tu dong va duoc luu tru o thu muc /home/$user_m/$pfile/package/Tool-Server !"
+   echo "Neu ban can tai lai thi vui long xoa cac package da tai ve o thu muc /home/$user_m/$pfile/package/Tool-Server
    echo "Da cai dat thanh cong!"
    exit 0
    else 
@@ -175,7 +176,8 @@ elif [[ "$query" == "8" ]]; then
    unzip  "/home/$user_m/$pfile/package/Tool-Server/command_package.zip" -d "/home/$user_m/$pfile_env/"
    echo "Dang cap mot so quyen can thiet cho package"
    sudo chmod +x /home/$user_m/$pfile_env/*
-   echo "Luu y: Cac package da tai ve khong duoc xoa tu dong va duoc luu tru o thu muc /home/$user_m/$pfile/package !"
+   echo "Luu y: Cac package da tai ve khong duoc xoa tu dong va duoc luu tru o thu muc /home/$user_m/$pfile/package/Tool-Server !"
+   echo "Neu ban can tai lai thi vui long xoa cac package da tai ve o thu muc /home/$user_m/$pfile/package/Tool-Server
    echo "Da cai dat thanh cong!"
    exit 0
    else 
