@@ -11,7 +11,7 @@ pfile_env="Non-IDE-RezaxOnes_env"
 
 
 
-echo "Non-IDE By RezaxOnes - Version 2.2.5 - Optimized Ultra NIRO 2"
+echo "Non-IDE By RezaxOnes - Version 2.2.6 - Optimized Ultra NIRO 2"
 echo "LICENSE - MIT"
 echo "Ban can giup gi?"
 echo "Lua chon: "
@@ -118,8 +118,8 @@ elif [[ "$query" == "8" ]]; then
    echo "Ban can tai: (unzip, curl, wget)"
    echo "Tuy chon: (coreutils) (neu distro cua ban khong phai minimal thuong khong can tai)"
    echo "---------------------------------------------------------------------------------------"
-   echo "Tu phien ban version 2.2.5 - Optimized Ultra NIRO 2, Non-IDE-RezaxOnes tich hop ca tools server vao package"
-   echo "Non-IDE By RezaxOnes Downloads Package Center - Version 2.2.5 - Optimized Ultra NIRO 2"
+   echo "Tu phien ban version 2.2.6 - Optimized Ultra NIRO 2, Non-IDE-RezaxOnes tich hop ca tools server vao package"
+   echo "Non-IDE By RezaxOnes Downloads Package Center - Version 2.2.6 - Optimized Ultra NIRO 2"
    echo "LICENSE - MIT"
    echo "Ban can tai gi?"
    echo "1. Cac lenh cua tool server (tool server by RezaxOnes Studios)"
@@ -140,6 +140,7 @@ elif [[ "$query" == "8" ]]; then
    read -p ">> " query_package_1_1
    if [[ "$query_package_1_1" == "1" ]]; then
    echo "Ban dang tai tu nguon rscdn.rezaxones.com"
+   mkdir -p "/home/$user_m/$pfile/package/Tool-Server"
    wget -P  "/home/$user_m/$pfile/package/Tool-Server" "https://rscdn.rezaxones.com/list/github_archive/tool-server/command_package.zip"
    wget -P  "/home/$user_m/$pfile/package/Tool-Server" "https://rscdn.rezaxones.com/list/github_archive/tool-server/SHA256SUM-command_package.txt"
    echo "Dang checksum package"
@@ -162,6 +163,7 @@ elif [[ "$query" == "8" ]]; then
    fi
    elif [[ "$query_package_1_1" == "2" ]]; then
    echo "Ban dang tai tu nguon github.com"
+   mkdir -p "/home/$user_m/$pfile/package/Tool-Server"
    wget -P  "/home/$user_m/$pfile/package/Tool-Server" "https://github.com/RezaxOnes/tool-server/raw/refs/heads/main/command_package.zip"
    wget -P  "/home/$user_m/$pfile/package/Tool-Server" "https://github.com/RezaxOnes/tool-server/raw/refs/heads/main/SHA256SUM-command_package.txt"
    echo "Dang checksum package"
