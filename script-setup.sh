@@ -33,7 +33,7 @@ exit 1
 fi
 
 if [[ -d "/home/$user_m/$pfile_env_flag" ]]; then
-    echo "Error: File '$pfile_env_flag' Da Ton Tai Nen Huy Thuc Thi Script."
+    echo "Error: Folder '$pfile_env_flag' Da Ton Tai Nen Huy Thuc Thi Script."
     echo "Lenh nay da huy execute nen se tra ve \"exit 0\"."
     exit 0
 fi
