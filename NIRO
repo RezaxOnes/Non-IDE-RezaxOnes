@@ -10,6 +10,139 @@ pfile_env="Non-IDE-RezaxOnes_env"
 
 
 
+# ==== Package Function ====
+package_1_checksum() {
+   echo "Dang checksum package"
+   touch "/home/$user_m/$pfile/package/Tool-Server/temp_SHA256SUM-command_package.txt"
+   sha256sum "/home/$user_m/$pfile/package/Tool-Server/command_package.zip" | awk '{print $1}' | tee "/home/$user_m/$pfile/package/Tool-Server/temp_SHA256SUM-command_package.txt"
+   if cmp -s "/home/$user_m/$pfile/package/Tool-Server/SHA256SUM-command_package.txt" "/home/$user_m/$pfile/package/Tool-Server/temp_SHA256SUM-command_package.txt"; then
+   echo "Checksum da khop!"
+   echo "Dang unzip package /home/$user_m/$pfile/package/Tool-Server/command_package.zip"
+   unzip  "/home/$user_m/$pfile/package/Tool-Server/command_package.zip" -d "/home/$user_m/$pfile_env/"
+   echo "Dang cap mot so quyen can thiet cho package"
+   sudo chmod +x /home/$user_m/$pfile_env/*
+   echo "Luu y: Cac package da tai ve khong duoc xoa tu dong va duoc luu tru o thu muc /home/$user_m/$pfile/package/Tool-Server !"
+   echo "Neu ban can tai lai thi vui long xoa cac package da tai ve o thu muc /home/$user_m/$pfile/package/Tool-Server"
+   echo "Da cai dat thanh cong!"
+   exit 0
+   else 
+   echo "Checksum khong khop"
+   echo "Cai dat that bai!"
+   echo "Vui long kiem tra lai Non-IDE-RezaxOnes!"
+   exit 1
+   fi
+}
+
+package_1_mirror() {
+   echo "ban muon tai package nay tu nguon mirror nao?"
+   echo "1. rscdn.rezaxones.com"
+   echo "2. github.com"
+   echo "Vui long nhap lua chon! (Chi nhap so khong nhap gi them)."
+   read -p ">> " query_package_1_1
+   if [[ "$query_package_1_1" == "1" ]]; then
+   echo "Ban dang tai tu nguon rscdn.rezaxones.com"
+   mkdir -p "/home/$user_m/$pfile/package/Tool-Server"
+   wget -P  "/home/$user_m/$pfile/package/Tool-Server" "https://rscdn.rezaxones.com/list/github_archive/tool-server/command_package.zip"
+   wget -P  "/home/$user_m/$pfile/package/Tool-Server" "https://rscdn.rezaxones.com/list/github_archive/tool-server/SHA256SUM-command_package.txt"
+   package_1_checksum
+   elif [[ "$query_package_1_1" == "2" ]]; then
+   echo "Ban dang tai tu nguon github.com"
+   mkdir -p "/home/$user_m/$pfile/package/Tool-Server"
+   wget -P  "/home/$user_m/$pfile/package/Tool-Server" "https://github.com/RezaxOnes/tool-server/raw/refs/heads/main/command_package.zip"
+   wget -P  "/home/$user_m/$pfile/package/Tool-Server" "https://github.com/RezaxOnes/tool-server/raw/refs/heads/main/SHA256SUM-command_package.txt"
+   package_1_checksum
+   else 
+   echo "Lua chon khong hop le tuy nhien van tuong duong voi exit 0"
+   exit 0
+   fi
+}
+
+package_1() {
+   echo "ban co chac chan muon tai package nay khong?"
+   echo "1. co"
+   echo "2. khong"
+   echo "Vui long nhap lua chon! (Chi nhap so khong nhap gi them)."
+   read -p ">> " query_package_1_0
+   if [[ "$query_package_1_0" == "1" ]]; then
+   package_1_mirror
+   elif [[ "$query_package_1_0" == "2" ]]; then
+   echo "Ban da huy thao tac thanh cong!"
+   exit 0
+   else 
+   echo "Lua chon khong hop le tuy nhien van tuong duong voi exit 0"
+   exit 0
+   fi
+}
+
+package_2_checksum() {
+   echo "Dang checksum package"
+   touch "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/temp_SHA256SUM-ASRO_package.txt"
+   sha256sum "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/ASRO_package.zip" | awk '{print $1}' | tee "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/temp_SHA256SUM-ASRO_package.txt"
+   if cmp -s "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/SHA256SUM-ASRO_package.txt" "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/temp_SHA256SUM-ASRO_package.txt"; then
+   echo "Checksum da khop!"
+   echo "Dang unzip package /home/$user_m/$pfile/package/autoShutdown-RezaxOnes/ASRO_package.zip"
+   unzip  "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/ASRO_package.zip" -d "/home/$user_m/$pfile_env/"
+   echo "Dang cap mot so quyen can thiet cho package"
+   sudo chmod +x /home/$user_m/$pfile_env/*
+   sudo chmod +x /home/$user_m/$pfile_env/ASRO_command/*
+   echo "Dang inject user vao ASRO"
+   sed -i "/^# == USER ==/{a\
+   user_m=\"$user_m\"
+   }" "/home/$user_m/$pfile_env/ASRO"
+   echo "Vui long chay lenh \"ASRO\" va chon muc 1 neu ban muon install ASRO !"
+   echo "Luu y: Cac package da tai ve khong duoc xoa tu dong va duoc luu tru o thu muc /home/$user_m/$pfile/package/autoShutdown-RezaxOnes !"
+   echo "Neu ban can tai lai thi vui long xoa cac package da tai ve o thu muc /home/$user_m/$pfile/package/autoShutdown-RezaxOnes"
+   echo "Da cai dat thanh cong!"
+   exit 0
+   else 
+   echo "Checksum khong khop"
+   echo "Cai dat that bai!"
+   echo "Vui long kiem tra lai autoShutdown-RezaxOnes!"
+   exit 1
+   fi
+}
+
+package_2_mirror() {
+   echo "ban muon tai package nay tu nguon mirror nao?"
+   echo "1. rscdn.rezaxones.com"
+   echo "2. github.com"
+   echo "Vui long nhap lua chon! (Chi nhap so khong nhap gi them)."
+   read -p ">> " query_package_2_1
+   if [[ "$query_package_2_1" == "1" ]]; then
+   echo "Ban dang tai tu nguon rscdn.rezaxones.com"
+   mkdir -p "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes"
+   wget -P  "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes" "https://rscdn.rezaxones.com/list/github_archive/autoShutdown-RezaxOnes/package_for_NIRO/ASRO_package.zip"
+   wget -P  "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes" "https://rscdn.rezaxones.com/list/github_archive/autoShutdown-RezaxOnes/package_for_NIRO/SHA256SUM-ASRO_package.txt"
+   package_2_checksum
+   elif [[ "$query_package_2_1" == "2" ]]; then
+   echo "Ban dang tai tu nguon github.com"
+   mkdir -p "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes"
+   wget -P  "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes" "https://github.com/RezaxOnes/autoShutdown-RezaxOnes/raw/refs/heads/main/package_for_NIRO/ASRO_package.zip"
+   wget -P  "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes" "https://github.com/RezaxOnes/autoShutdown-RezaxOnes/raw/refs/heads/main/package_for_NIRO/SHA256SUM-ASRO_package.txt"
+   package_2_checksum
+   else 
+   echo "Lua chon khong hop le tuy nhien van tuong duong voi exit 0"
+   exit 0
+   fi
+}
+
+package_2() {
+   echo "ban co chac chan muon tai package nay khong?"
+   echo "1. co"
+   echo "2. khong"
+   echo "Vui long nhap lua chon! (Chi nhap so khong nhap gi them)."
+   read -p ">> " query_package_2_0
+   if [[ "$query_package_2_0" == "1" ]]; then
+   package_2_mirror
+   elif [[ "$query_package_2_0" == "2" ]]; then
+   echo "Ban da huy thao tac thanh cong!"
+   exit 0
+   else 
+   echo "Lua chon khong hop le tuy nhien van tuong duong voi exit 0"
+   exit 0
+   fi
+}
+# ==== End ====
 
 echo "Non-IDE By RezaxOnes - Version 2.2.6 - Optimized Ultra NIRO 2"
 echo "LICENSE - MIT"
@@ -129,158 +262,15 @@ elif [[ "$query" == "8" ]]; then
    read -p ">> " query_download
    # ===== Package 1 =====#
    if [[ "$query_download" == "1" ]]; then
-   echo "ban co chac chan muon tai package nay khong?"
-   echo "1. co"
-   echo "2. khong"
-   echo "Vui long nhap lua chon! (Chi nhap so khong nhap gi them)."
-   read -p ">> " query_package_1_0
-   if [[ "$query_package_1_0" == "1" ]]; then
-   echo "ban muon tai package nay tu nguon mirror nao?"
-   echo "1. rscdn.rezaxones.com"
-   echo "2. github.com"
-   echo "Vui long nhap lua chon! (Chi nhap so khong nhap gi them)."
-   read -p ">> " query_package_1_1
-   if [[ "$query_package_1_1" == "1" ]]; then
-   echo "Ban dang tai tu nguon rscdn.rezaxones.com"
-   mkdir -p "/home/$user_m/$pfile/package/Tool-Server"
-   wget -P  "/home/$user_m/$pfile/package/Tool-Server" "https://rscdn.rezaxones.com/list/github_archive/tool-server/command_package.zip"
-   wget -P  "/home/$user_m/$pfile/package/Tool-Server" "https://rscdn.rezaxones.com/list/github_archive/tool-server/SHA256SUM-command_package.txt"
-   echo "Dang checksum package"
-   touch "/home/$user_m/$pfile/package/Tool-Server/temp_SHA256SUM-command_package.txt"
-   sha256sum "/home/$user_m/$pfile/package/Tool-Server/command_package.zip" | awk '{print $1}' | tee "/home/$user_m/$pfile/package/Tool-Server/temp_SHA256SUM-command_package.txt"
-   if cmp -s "/home/$user_m/$pfile/package/Tool-Server/SHA256SUM-command_package.txt" "/home/$user_m/$pfile/package/Tool-Server/temp_SHA256SUM-command_package.txt"; then
-   echo "Checksum da khop!"
-   echo "Dang unzip package /home/$user_m/$pfile/package/Tool-Server/command_package.zip"
-   unzip  "/home/$user_m/$pfile/package/Tool-Server/command_package.zip" -d "/home/$user_m/$pfile_env/"
-   echo "Dang cap mot so quyen can thiet cho package"
-   sudo chmod +x /home/$user_m/$pfile_env/*
-   echo "Luu y: Cac package da tai ve khong duoc xoa tu dong va duoc luu tru o thu muc /home/$user_m/$pfile/package/Tool-Server !"
-   echo "Neu ban can tai lai thi vui long xoa cac package da tai ve o thu muc /home/$user_m/$pfile/package/Tool-Server"
-   echo "Da cai dat thanh cong!"
-   exit 0
-   else 
-   echo "Checksum khong khop"
-   echo "Cai dat that bai!"
-   echo "Vui long kiem tra lai Non-IDE-RezaxOnes!"
-   exit 1
-   fi
-   elif [[ "$query_package_1_1" == "2" ]]; then
-   echo "Ban dang tai tu nguon github.com"
-   mkdir -p "/home/$user_m/$pfile/package/Tool-Server"
-   wget -P  "/home/$user_m/$pfile/package/Tool-Server" "https://github.com/RezaxOnes/tool-server/raw/refs/heads/main/command_package.zip"
-   wget -P  "/home/$user_m/$pfile/package/Tool-Server" "https://github.com/RezaxOnes/tool-server/raw/refs/heads/main/SHA256SUM-command_package.txt"
-   echo "Dang checksum package"
-   touch "/home/$user_m/$pfile/package/Tool-Server/temp_SHA256SUM-command_package.txt"
-   sha256sum "/home/$user_m/$pfile/package/Tool-Server/command_package.zip" | awk '{print $1}' | tee "/home/$user_m/$pfile/package/Tool-Server/temp_SHA256SUM-command_package.txt"
-   if cmp -s "/home/$user_m/$pfile/package/Tool-Server/SHA256SUM-command_package.txt" "/home/$user_m/$pfile/package/Tool-Server/temp_SHA256SUM-command_package.txt"; then
-   echo "Checksum da khop!"
-   echo "Dang unzip package /home/$user_m/$pfile/package/Tool-Server/command_package.zip"
-   unzip  "/home/$user_m/$pfile/package/Tool-Server/command_package.zip" -d "/home/$user_m/$pfile_env/"
-   echo "Dang cap mot so quyen can thiet cho package"
-   sudo chmod +x /home/$user_m/$pfile_env/*
-   echo "Luu y: Cac package da tai ve khong duoc xoa tu dong va duoc luu tru o thu muc /home/$user_m/$pfile/package/Tool-Server !"
-   echo "Neu ban can tai lai thi vui long xoa cac package da tai ve o thu muc /home/$user_m/$pfile/package/Tool-Server"
-   echo "Da cai dat thanh cong!"
-   exit 0
-   else 
-   echo "Checksum khong khop"
-   echo "Cai dat that bai!"
-   echo "Vui long kiem tra lai Non-IDE-RezaxOnes!"
-   exit 1
-   fi
-   else 
-   echo "Lua chon khong hop le tuy nhien van tuong duong voi exit 0"
-   exit 0
-   fi
-   elif [[ "$query_package_1_0" == "2" ]]; then
-   echo "Ban da huy thao tac thanh cong!"
-   exit 0
-   else 
-   echo "Lua chon khong hop le tuy nhien van tuong duong voi exit 0"
-   exit 0
-   fi
+   package_1
    # ====== End Package 1 =======
    # ====== Package 2 ========
    elif [[ "$query_download" == "2" ]]; then
-   echo "ban co chac chan muon tai package nay khong?"
-   echo "1. co"
-   echo "2. khong"
-   echo "Vui long nhap lua chon! (Chi nhap so khong nhap gi them)."
-   read -p ">> " query_package_2_0
-   if [[ "$query_package_2_0" == "1" ]]; then
-   echo "ban muon tai package nay tu nguon mirror nao?"
-   echo "1. rscdn.rezaxones.com"
-   echo "2. github.com"
-   echo "Vui long nhap lua chon! (Chi nhap so khong nhap gi them)."
-   read -p ">> " query_package_2_1
-   if [[ "$query_package_2_1" == "1" ]]; then
-   echo "Ban dang tai tu nguon rscdn.rezaxones.com"
-   mkdir -p "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes"
-   wget -P  "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes" "https://rscdn.rezaxones.com/list/github_archive/autoShutdown-RezaxOnes/package_for_NIRO/ASRO_package.zip"
-   wget -P  "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes" "https://rscdn.rezaxones.com/list/github_archive/autoShutdown-RezaxOnes/package_for_NIRO/SHA256SUM-ASRO_package.txt"
-   echo "Dang checksum package"
-   touch "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/temp_SHA256SUM-ASRO_package.txt"
-   sha256sum "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/ASRO_package.zip" | awk '{print $1}' | tee "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/temp_SHA256SUM-ASRO_package.txt"
-   if cmp -s "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/SHA256SUM-ASRO_package.txt" "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/temp_SHA256SUM-ASRO_package.txt"; then
-   echo "Checksum da khop!"
-   echo "Dang unzip package /home/$user_m/$pfile/package/autoShutdown-RezaxOnes/ASRO_package.zip"
-   unzip  "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/ASRO_package.zip" -d "/home/$user_m/$pfile_env/"
-   echo "Dang cap mot so quyen can thiet cho package"
-   sudo chmod +x /home/$user_m/$pfile_env/*
-   sudo chmod +x /home/$user_m/$pfile_env/ASRO_command/*
-   echo "Dang inject user vao ASRO"
-   sed -i "/^# == USER ==/{a\
-   user_m=\"$user_m\"
-   }" "/home/$user_m/$pfile_env/ASRO"
-   echo "Vui long chay lenh \"ASRO\" va chon muc 1 neu ban muon install ASRO !"
-   echo "Luu y: Cac package da tai ve khong duoc xoa tu dong va duoc luu tru o thu muc /home/$user_m/$pfile/package/autoShutdown-RezaxOnes !"
-   echo "Neu ban can tai lai thi vui long xoa cac package da tai ve o thu muc /home/$user_m/$pfile/package/autoShutdown-RezaxOnes"
-   echo "Da cai dat thanh cong!"
-   exit 0
-   else 
-   echo "Checksum khong khop"
-   echo "Cai dat that bai!"
-   echo "Vui long kiem tra lai autoShutdown-RezaxOnes!"
-   exit 1
-   fi
-   elif [[ "$query_package_2_1" == "2" ]]; then
-   echo "Ban dang tai tu nguon github.com"
-   mkdir -p "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes"
-   wget -P  "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes" "https://github.com/RezaxOnes/autoShutdown-RezaxOnes/raw/refs/heads/main/package_for_NIRO/ASRO_package.zip"
-   wget -P  "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes" "https://github.com/RezaxOnes/autoShutdown-RezaxOnes/raw/refs/heads/main/package_for_NIRO/SHA256SUM-ASRO_package.txt"
-   echo "Dang checksum package"
-   touch "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/temp_SHA256SUM-ASRO_package.txt"
-   sha256sum "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/ASRO_package.zip" | awk '{print $1}' | tee "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/temp_SHA256SUM-ASRO_package.txt"
-   if cmp -s "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/SHA256SUM-ASRO_package.txt" "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/temp_SHA256SUM-ASRO_package.txt"; then
-   echo "Checksum da khop!"
-   echo "Dang unzip package /home/$user_m/$pfile/package/autoShutdown-RezaxOnes/ASRO_package.zip"
-   unzip  "/home/$user_m/$pfile/package/autoShutdown-RezaxOnes/ASRO_package.zip" -d "/home/$user_m/$pfile_env/"
-   echo "Dang cap mot so quyen can thiet cho package"
-   sudo chmod +x /home/$user_m/$pfile_env/*
-   sudo chmod +x /home/$user_m/$pfile_env/ASRO_command/*
-   echo "Dang inject user vao ASRO"
-   sed -i "/^# == USER ==/{a\
-   user_m=\"$user_m\"
-   }" "/home/$user_m/$pfile_env/ASRO"
-   echo "Vui long chay lenh \"ASRO\" va chon muc 1 neu ban muon install ASRO !"
-   echo "Luu y: Cac package da tai ve khong duoc xoa tu dong va duoc luu tru o thu muc /home/$user_m/$pfile/package/autoShutdown-RezaxOnes !"
-   echo "Neu ban can tai lai thi vui long xoa cac package da tai ve o thu muc /home/$user_m/$pfile/package/autoShutdown-RezaxOnes"
-   echo "Da cai dat thanh cong!"
-   exit 0
-   else 
-   echo "Checksum khong khop"
-   echo "Cai dat that bai!"
-   echo "Vui long kiem tra lai autoShutdown-RezaxOnes!"
-   exit 1
-   fi
-   elif [[ "$query_package_2_0" == "2" ]]; then
-   echo "Ban da huy thao tac thanh cong!"
-   exit 0
-   else 
+   package_2
+   # ====== End Package 2 ===========
+   else
    echo "Lua chon khong hop le tuy nhien van tuong duong voi exit 0"
    exit 0
-   fi
-   # ====== End Package 2 ===========
    fi
 elif [[ "$query" == "9" ]]; then
 echo "Good Bye!"
