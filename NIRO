@@ -89,7 +89,7 @@ package_2_checksum() {
    sed -i "/^# == USER ==/{a\
    user_m=\"$user_m\"
    }" "/home/$user_m/$pfile_env/ASRO"
-   echo "Vui long chay lenh \"ASRO\" va chon muc 1 neu ban muon install ASRO !"
+   echo "Vui long chay lenh \"ASRO\" va chon muc 2 neu ban muon install ASRO !"
    echo "Luu y: Cac package da tai ve khong duoc xoa tu dong va duoc luu tru o thu muc /home/$user_m/$pfile/package/autoShutdown-RezaxOnes !"
    echo "Neu ban can tai lai thi vui long xoa cac package da tai ve o thu muc /home/$user_m/$pfile/package/autoShutdown-RezaxOnes"
    echo "Da cai dat thanh cong!"
