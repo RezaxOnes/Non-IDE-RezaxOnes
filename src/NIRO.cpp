@@ -49,6 +49,7 @@ class package_1 {
    statusChecksum = rssystem("cmp -s " + sha256sumOrigin + " " + sha256sumTemp);
    if(statusChecksum == 0)
    {
+   cout << "Checksum da khop!" << endl; 
    cout << "Dang unzip package " + zpackage << endl;
    ssystem("unzip " + zpackage + " -d " + "/home/" + user_m + "/" + pfile_env + "/");
    cout << "Dang cap mot so quyen can thiet cho package" << endl;
@@ -59,7 +60,7 @@ class package_1 {
    exit(0);
    }
    else {
-   cout << "Checksum khong khop" << endl; 
+   cout << "Checksum khong khop!" << endl; 
    cout << "Cai dat that bai!" << endl;
    cout << "Vui long kiem tra lai Non-IDE-RezaxOnes!" << endl;
    exit(1);
@@ -158,7 +159,7 @@ class package_2 {
     }
    else 
    {
-   cout << "Checksum khong khop" << endl;
+   cout << "Checksum khong khop!" << endl;
    cout << "Cai dat that bai!" << endl;
    cout << "Vui long kiem tra lai autoShutdown-RezaxOnes!" << endl; 
    exit(1);
