@@ -54,7 +54,7 @@ echo "exec /home/$user_m/$pfile_env/Non-IDE-Settings \"\$@\"" >> "/home/$user_m/
 echo -e "${Green}[-] Them lenh viet tat (co the goi la invoke hoac alias) cho $pfile Command${RESET}"
 printf "\n" | sudo tee -a "/home/$user_m/$pfile_env/NIRO-C"
 echo "exec /home/$user_m/$pfile_env/Non-IDE-Command \"\$@\"" >> "/home/$user_m/$pfile_env/NIRO-C"
-echo -e "${Green}[-] Them map file cho $pfile ${RESET}"
+# echo -e "${Green}[-] Them map file cho $pfile ${RESET}"
 
 echo -e "${Green}[-] Them bien user tuyet doi => Non-IDE-Settings${RESET}"
 # == USER ==
@@ -68,10 +68,13 @@ sed -i "/^# == USER ==/{a\
  user_m=\"$user_m\"
 }" "/home/$user_m/$pfile_env/Non-IDE-Command"
 
-echo -e "${Green}[-] Them bien user tuyet doi => NIRO${RESET}"
-sed -i "/^# == USER ==/{a\
- user_m=\"$user_m\"
-}" "/home/$user_m/$pfile_env/NIRO"
+# MAKE FILE 
+echo -e "${Green}[-] Dang them bien user tuyet doi => NIRO.cpp${RESET}"
+sed -i "\|^/\* == USER == \*/|a\\ string user_m=\"$user_m\";" "/home/$user_m/$pfile/src/NIRO.cpp"
+echo -e "${Green}[-] Dang BUILD NIRO.cpp${RESET}"
+cd "/home/$user_m/$pfile/" && make
+echo -e "${Green}[-] Da BUILD NIRO.cpp => NIRO (Binary Machine) THANH CONG!${RESET}"
+# END
 
 echo -e "${Green}[-] Dang cap quyen can thiet cho /home/$user_m/$pfile_env va /home/$user_m/$pfile_env_flag${RESET}"
 sudo chmod -R 755 "/home/$user_m/$pfile_env"

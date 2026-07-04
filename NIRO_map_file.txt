@@ -1,6 +1,8 @@
 # === Map File ===
 #
 docs
+src
+build
 debug
 e
 edit
@@ -14,6 +16,8 @@ NIRO-S
 Non-IDE-Command
 Non-IDE-Settings
 r
+makefile
+backup_bash
 README.md
 reinstall.sh
 run

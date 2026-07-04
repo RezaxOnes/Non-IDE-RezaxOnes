@@ -2,3 +2,4 @@
 2. Khi cập nhật source luôn luôn sửa version_source và phiên bản trong script NIRO (Sẽ được đánh dấu sau)
 3. Nếu script lỗi do flag, hãy xóa Non-IDE-RezaxOnes_Flag
 4. Luôn xóa các file/thư mục trong test và package khi đã test xong!
+5. Chuyển dần từ Bash sang C++ để tăng khả năng bảo trì
