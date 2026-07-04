@@ -70,9 +70,9 @@ sed -i "/^# == USER ==/{a\
 
 # MAKE FILE 
 echo -e "${Green}[-] Dang them bien user tuyet doi => NIRO.cpp${RESET}"
-sed -i "\|^/\* == USER == \*/|a\\ string user_m=\"$user_m\";" "/home/$user_m/$pfile/src/NIRO.cpp"
+sed -i "\|^/\* == USER == \*/|a\\ string user_m=\"$user_m\";" "/home/$user_m/$pfile_env/src/NIRO.cpp"
 echo -e "${Green}[-] Dang BUILD NIRO.cpp${RESET}"
-cd "/home/$user_m/$pfile/" && make
+cd "/home/$user_m/$pfile_env/" && make && cd "/home/$user_m/$pfile/"
 echo -e "${Green}[-] Da BUILD NIRO.cpp => NIRO (Binary Machine) THANH CONG!${RESET}"
 # END
 
