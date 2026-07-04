@@ -149,9 +149,7 @@ class package_2 {
     ssystem("sudo chmod +x /home/" + user_m + "/" + pfile_env + "/" + R"(*)");
     ssystem("sudo chmod +x /home/" + user_m + "/" + pfile_env + "/ASRO_command/" + R"(*)");
     cout << "Dang inject user vao ASRO" << endl;
-    ssystem(R"(sed -i "/^# == USER ==/{a\
-   user_m=\"$user_m\"
-    })" + string(" /home/") + user_m + "/" + pfile_env + "/ASRO");
+    ssystem("sed -i '/^# == USER ==/{a\\   user_m=\"" + user_m + "\"\n}' /home/" + user_m + "/" + pfile_env + "/ASRO");
    cout << "Vui long chay lenh \"ASRO\" va chon muc 2 neu ban muon install ASRO !" << endl;
    cout << "Luu y: Cac package da tai ve khong duoc xoa tu dong va duoc luu tru o thu muc" + ASRO_dir + " !" << endl;
    cout << "Neu ban can tai lai thi vui long xoa cac package da tai ve o thu muc " + ASRO_dir + " !" << endl;
@@ -242,9 +240,7 @@ void updateInTime(string query)
       exit(0);
    }
    else { 
-    ssystem(R"(sed -i "/^# == USER ==/{a\
-    user_m=\"$user_m\"
-    })" + string("/home/") + user_m + "/" + pfile + "/update-in-time.sh");
+    ssystem("sed -i '/^# == USER ==/{a\\    user_m=\"" + user_m + "\"\n}' /home/" + user_m + "/" + pfile + "/update-in-time.sh");
     ssystem("exec /home/" + user_m + "/" + pfile + "/update-in-time.sh");
     exit(0);
    }
@@ -343,12 +339,24 @@ int main()
    else if (query == 2) {
    cout << "Se chuyen tiep lenh sau dau \">> \" sang Non-IDE-Settings" << endl;
    cout << "Vui long nhap: " << endl;
-   ssystem(R"(read -p "NIRO-S>> " -a args1)" + string(R"( && )") + "exec /home/" + user_m + "/" + pfile_env + "/Non-IDE-Settings " + R"(${args1[@]})");
+   if(cin.peek() == '\n')
+   {
+   cin.ignore(); //ignore cin tu menu
+   }
+   string args1; 
+   cout << ">> "; getline(cin, args1);
+   ssystem("/home/" + user_m + "/" + pfile_env + "/Non-IDE-Settings " + args1);
    }
    else if  (query == 3) {
    cout << "Se chuyen tiep lenh sau dau \">> \" sang Non-IDE-Command" << endl;
    cout << "Vui long nhap: " << endl;
-   ssystem(R"(read -p "NIRO-C>> " -a args2)" + string(R"( && )") + "exec /home/" + user_m + "/" + pfile_env + "/Non-IDE-Command " + R"(${args2[@]})");
+   if(cin.peek() == '\n')
+   {
+   cin.ignore(); //ignore cin tu menu
+   }
+   string args2;
+   cout << ">> "; getline(cin, args2);
+   ssystem("/home/" + user_m + "/" + pfile_env + "/Non-IDE-Command " + args2);
    }
    else if (query == 4) {
    cout << "Lenh nay can quyen sudo!" << endl;
@@ -364,9 +372,7 @@ int main()
    }
    else if (query == 6)
    {
-       ssystem(R"(sed -i "/^# == USER ==/{a\
- user_m=\"$user_m\"
-       })" + string(" /home/") + user_m + "/" + pfile + "/reinstall.sh");
+       ssystem("sed -i '/^# == USER ==/{a\\ user_m=\"" + user_m + "\"\n}' /home/" + user_m + "/" + pfile + "/reinstall.sh");
        cout << "Lenh nay can sudo!" << endl;
        ssystem("exec /home/" + user_m + "/" + pfile + "/reinstall.sh");
        exit(0);
